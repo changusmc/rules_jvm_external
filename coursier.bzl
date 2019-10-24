@@ -391,10 +391,10 @@ def _coursier_fetch_impl(repository_ctx):
         protocol = None
         # Only support http/https transports
         for part in filepath_parts:
-            if part == "http" or part == "https":
+            if part == "http" or part == "https" or part == "file":
                     protocol = part
         if protocol == None:
-            fail("Only artifacts downloaded over http(s) are supported: %s" % artifact["coord"])
+            fail("Only artifacts downloaded over http(s) or file are supported: %s" % artifact["coord"])
         primary_url_parts.extend([protocol, "://"])
         for part in filepath_parts[filepath_parts.index(protocol) + 1:]:
             primary_url_parts.extend([part, "/"])
